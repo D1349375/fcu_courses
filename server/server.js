@@ -13,7 +13,7 @@ const cors = require('cors');
 const db = require('./db'); // 引入我們剛剛寫的資料庫設定
 
 const app = express();
-const PORT = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware 中介軟體
 app.use(cors()); // 允許跨網域請求 (讓前端的 port 5173 可以打到後端的 port 3000)
