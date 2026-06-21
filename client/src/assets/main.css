@@ -1,0 +1,60 @@
+/* client/src/assets/main.css */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-deep:     #111111;
+  --bg-base:     #161616;
+  --bg-card:     #1E1E1E;
+  --bg-hover:    #252525;
+  --bg-input:    #1A1A1A;
+  --border:      #2E2E2E;
+  --border-soft: #262626;
+  --text-primary: #F0F0F0;
+  --text-secondary: #8A8A8A;
+  --text-muted:   #505050;
+  --accent-teal:  #D4D4D4;
+  --accent-teal-dim: rgba(212,212,212,0.07);
+  --accent-teal-glow: rgba(212,212,212,0.12);
+  --green:        #5A9E6F;
+  --green-dim:    rgba(90,158,111,0.12);
+  --red:          #B85C52;
+  --red-dim:      rgba(184,92,82,0.12);
+  --amber:        #C49A3C;
+  --amber-dim:    rgba(196,154,60,0.12);
+  --blue:         #5B8DD9;
+  --font-mono:    'JetBrains Mono', monospace;
+  --font-ui:      'Inter', sans-serif;
+  --radius:       6px;
+  --radius-lg:    10px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 捲軸樣式 */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* 共用按鈕樣式 (從你原本的 HTML 抽出來) */
+.btn-primary {
+  background: var(--text-primary); color: var(--bg-deep); border: none;
+  border-radius: var(--radius); padding: 7px 16px; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; font-family: var(--font-ui); letter-spacing: 0.02em;
+}
+.btn-primary:hover { opacity: 0.88; }
+.btn-ghost {
+  background: transparent; color: var(--text-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 6px 14px; font-size: 12px; cursor: pointer;
+  transition: all 0.15s; font-family: var(--font-ui);
+}
+.btn-ghost:hover { border-color: var(--text-secondary); color: var(--text-primary); }
