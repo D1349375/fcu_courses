@@ -152,7 +152,7 @@ const portfolioToDelete = ref(null)
 // ─── 初始化：同時拉取「所有組合」與「所有課程資料庫」 ───
 onMounted(async () => {
   try {
-    const resCourses = await fetch('http://localhost:3000/api/course-info')
+    const resCourses = await fetch('/api/course-info')
     allCourses.value = await resCourses.json()
     await loadPortfolios()
   } catch (e) {
@@ -162,7 +162,7 @@ onMounted(async () => {
 
 const loadPortfolios = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/portfolios', {
+    const res = await fetch('/api/portfolios', {
       headers: { 'x-user-id': getUserId() } // 攜帶身分證
     })
     const data = await res.json()
@@ -200,7 +200,7 @@ const createPortfolio = async () => {
   if (!newPortfolioName.value.trim()) return
   isCreating.value = true
   try {
-    const res = await fetch('http://localhost:3000/api/portfolios', {
+    const res = await fetch('/api/portfolios', {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
@@ -230,7 +230,7 @@ const promptDelete = (id, name) => {
 const executeDelete = async () => {
   if (!portfolioToDelete.value) return
   try {
-    await fetch(`http://localhost:3000/api/portfolios/${portfolioToDelete.value.id}`, { 
+    await fetch(`/api/portfolios/${portfolioToDelete.value.id}`, { 
       method: 'DELETE',
       headers: { 'x-user-id': getUserId() } // 攜帶身分證
     })

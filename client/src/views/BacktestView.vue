@@ -325,7 +325,7 @@ const filteredCourses = computed(() => {
 // ─── 初始化：抓課程與抓群組資料 ───
 const fetchData = async () => {
   try {
-    const resC = await fetch('http://localhost:3000/api/course-info')
+    const resC = await fetch('/api/course-info')
     const dataC = await resC.json()
     
     if (Array.isArray(dataC)) {
@@ -351,7 +351,7 @@ const fetchData = async () => {
       })
     }
 
-    const resP = await fetch('http://localhost:3000/api/portfolios', {
+    const resP = await fetch('/api/portfolios', {
       headers: { 'x-user-id': getUserId() }
     })
     portfolios.value = await resP.json()
@@ -374,7 +374,7 @@ const savePortfolioToDB = async () => {
   if (!p) return
   
   try {
-    await fetch(`http://localhost:3000/api/portfolios/${p.id}`, {
+    await fetch(`/api/portfolios/${p.id}`, {
       method: 'PUT',
       headers: { 
         'Content-Type': 'application/json',

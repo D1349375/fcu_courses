@@ -952,7 +952,7 @@ const handleFileUpload = async (event) => {
     const formData = new FormData()
     formData.append('file', file)
     
-    const res = await fetch('http://localhost:3000/api/upload/parse-schedule', {
+    const res = await fetch('/api/upload/parse-schedule', {
       method: 'POST',
       headers: { 'x-user-id': currentUser.value.id },
       body: formData 
@@ -1119,8 +1119,8 @@ onMounted(async () => {
   // 🌟 修改：同時向後端請求上學期(1)與下學期(2)的資料庫
   try {
     const [res1, res2] = await Promise.all([
-      fetch('http://localhost:3000/api/course-info?sem=1'),
-      fetch('http://localhost:3000/api/course-info?sem=2')
+      fetch('/api/course-info?sem=1'),
+      fetch('/api/course-info?sem=2')
     ])
     allCoursesDB.value['1'] = await res1.json()
     allCoursesDB.value['2'] = await res2.json()

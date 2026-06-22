@@ -563,7 +563,7 @@ const formatText = (text) => {
 const fetchCourses = async () => {
   isLoading.value = true
   try {
-    const res = await fetch('http://localhost:3000/api/course-info')
+    const res = await fetch('/api/course-info')
     const data = await res.json()
     
     // 💡 防呆機制：如果後端沒開或回傳錯誤，立刻在 Console 報警，避免整個畫面壞掉
@@ -597,7 +597,7 @@ const fetchWeeklySchedule = async (courseId) => {
   scheduleLoading.value = true
   weeklySchedule.value = []
   try {
-    const res = await fetch(`http://localhost:3000/api/course-info/${courseId}/schedule`)
+    const res = await fetch(`/api/course-info/${courseId}/schedule`)
     const data = await res.json()
     weeklySchedule.value = data
   } catch (e) {

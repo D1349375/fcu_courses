@@ -390,7 +390,7 @@ const submitReview = async () => {
   }
 
   try {
-    const res = await fetch(`http://localhost:3000/api/course-info/${route.params.id}/reviews`, {
+    const res = await fetch(`/api/course-info/${route.params.id}/reviews`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(reviewPayload)
@@ -441,7 +441,7 @@ const getAdviceClass = (rate) => { if (rate >= 80) return 'advice-safe'; if (rat
 onMounted(async () => {
   try {
     const courseId = route.params.id
-    const res = await fetch(`http://localhost:3000/api/course-info/${courseId}`)
+    const res = await fetch(`/api/course-info/${courseId}`)
     const c = await res.json()
 
     if (c && !c.error) {
