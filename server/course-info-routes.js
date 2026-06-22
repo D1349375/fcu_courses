@@ -45,10 +45,21 @@ try {
 }
 
 // 輔助函式：幫單一 DB 課程自動尋找並貼上 JSON 裡的缺失欄位
+
+// 輔助函式：幫單一 DB 課程自動尋找並貼上 JSON 裡的缺失欄位
 const mergeJsonData = (dbCourse) => {
   if (!dbCourse) return dbCourse
-  let match = allCoursesJson_1.find(j => j.sub_name === dbCourse.sub_name && j.scr_teacher === dbCourse.prof_name)
-  if (!match) match = allCoursesJson_1.find(j => j.sub_id3 === dbCourse.course_code)
+  
+  // 🌟 修正：把 prof_name 改成 scr_teacher！
+  let match = allCoursesJson_1.find(j => j.sub_name === dbCourse.sub_name && j.scr_teacher === dbCourse.scr_teacher) ||
+              allCoursesJson_2.find(j => j.sub_name === dbCourse.sub_name && j.scr_teacher === dbCourse.scr_teacher)
+              
+  if (!match) {
+    // 🌟 修正：把 course_code 改成 course_id！
+    match = allCoursesJson_1.find(j => j.sub_id3 === dbCourse.course_id) ||
+            allCoursesJson_2.find(j => j.sub_id3 === dbCourse.course_id)
+  }
+  
   if (!match) return dbCourse
 
   return {

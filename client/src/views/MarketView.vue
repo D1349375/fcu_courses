@@ -269,7 +269,7 @@ const goToDetail = (id) => {
 
 const fetchCourses = async () => {
   try {
-    const res = await fetch('/api/course-info')
+    const res = await fetch('http://localhost:3000/api/course-info')
     const data = await res.json()
     
     COURSES.value = data.map(c => {

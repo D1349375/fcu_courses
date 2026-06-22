@@ -89,7 +89,7 @@ const isDrawerOpen = ref(false)
 
 const fetchTickerData = async () => {
   try {
-    const res = await fetch('/api/course-info')
+    const res = await fetch('http://localhost:3000/api/course-info')
     const data = await res.json()
     const mappedData = data.map(c => {
       return { 
