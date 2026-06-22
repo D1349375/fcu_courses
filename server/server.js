@@ -4,7 +4,6 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
-
 const app = express();
 // 統一使用大寫的 PORT 變數
 const PORT = process.env.PORT || 3000;
@@ -14,9 +13,11 @@ app.use(cors());
 app.use(express.json()); 
 
 // ══════════════════════════════════════════════════════
-// 1️⃣ API 路由區 (必須在最上面，且只能寫相對路徑)
+// 1️⃣ API 路由區 (必須在最上面)
 // ══════════════════════════════════════════════════════
-app.get('/', (req, res) => {
+
+// 🌟 修正 1：將測試網址從 '/' 改為 '/api/health'，把根目錄讓給 Vue 網頁
+app.get('/api/health', (req, res) => {
   res.send('二一避險基金 API 伺服器運作中 ⚡');
 });
 
@@ -36,10 +37,12 @@ app.use('/api/upload', uploadRoutes);
 // ══════════════════════════════════════════════════════
 // 2️⃣ 前端靜態網頁處理區 (必須放在所有 API 之後！)
 // ══════════════════════════════════════════════════════
-// 這裡的路徑也要改對，指向你 Vue 打包後的 dist 資料夾
+
+// 讓 Express 提供 Vue 打包後的 dist 靜態檔案
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.use((req, res) => {
+// 🌟 修正 2：改用 app.get('*') 來接管前端路由，避免干擾 API 報錯機制
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
 
